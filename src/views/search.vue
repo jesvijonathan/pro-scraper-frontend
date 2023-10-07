@@ -7,7 +7,7 @@ import HeaderBar from "../components/headingbar.vue";
 const products = ref([]);
 
 async function getJson() {
-  const response = await axios.get("/assets/search.json");
+  const response = await axios.get("/src/assets/search.json");
 
   products.value = response.data;
 }

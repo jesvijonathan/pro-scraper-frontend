@@ -10,7 +10,6 @@ import Footer from "./components/footer.vue";
 import HeaderBar from "./components/headingbar.vue";
 
 import sjson from "./assets/search.json";
-console.log(sjson);
 </script>
 
 <template>
