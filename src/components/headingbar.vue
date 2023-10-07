@@ -6,9 +6,9 @@
   <div class="filt_area" id="filt_top">
     <div class="categ">
       <div class="filt_2" id="filt_2">
-        <a href="" class="stpath">Search</a>
+        <a href="" class="stpath">{{ searchTypeLabel() }}</a>
         /
-        <a href="" class="stpath">Iphone</a>
+        <a href="" class="stpath">"{{ searchQuery }}"</a>
       </div>
       <div class="filt_1" id="filt_1">
         Search Results ({{ products.length }})
@@ -63,9 +63,29 @@ const props = defineProps({
   },
   detail: {
     type: Number,
+    required: true,
+  },
+  searchQuery: {
+    type: String,
+    default: "",
+  },
+  searchType: {
+    type: Number,
     default: 0,
   },
 });
 
-console.log(props.products, props.detail);
+const searchTypeLabel = () => {
+  if (props.searchType == 0) {
+    return "Search";
+  } else if (props.searchType == 1) {
+    return "Quick Search";
+  } else if (props.searchType == 2) {
+    return "Deep Search";
+  } else if (props.searchType == 3) {
+    return "DB Cache Search";
+  } else {
+    return "Unknown"; // Handle other cases if needed
+  }
+};
 </script>

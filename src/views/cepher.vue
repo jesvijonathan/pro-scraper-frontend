@@ -9,6 +9,7 @@
         type="text"
         placeholder="Search"
         id="search_inpt"
+        autofocus="true"
       />
       <button @click="searchFunc" class="fa fa-search search_ico"></button>
     </form>
@@ -19,9 +20,9 @@
       <label class="stypelabel" for="api_type_select">Search Type</label>
       <select class="api_type_select" id="api_type_select">
         <option value="0">Regular</option>
-        <option value="1">Quick</option>
+        <option value="1" selected>Quick</option>
         <option value="2">Deep</option>
-        <option value="3" selected>DB Cache</option>
+        <option value="3">DB Cache</option>
       </select>
     </div>
   </div>
@@ -44,7 +45,7 @@ export default {
       let searchType = document.getElementById("api_type_select").value;
       let searchQuery = document.getElementById("search_inpt").value;
 
-      console.log(searchType, searchQuery);
+      // console.log(searchType, searchQuery);
       // move to search page, but pass the search query via url
       this.$router.push({
         name: "search",

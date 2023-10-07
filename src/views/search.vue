@@ -120,24 +120,46 @@ async function getJson() {
     })
     .catch((error) => {
       console.log(error);
+
+      if (searchType == 0) {
+        alert(
+          "No results found !\nEven after switching to Deep Search internally. \n\nChances are :\n- The server is down or\n- google is a bitch ! (Blacklisted, try again after a day)\n- maybe the search is one of the rarest product ever"
+        );
+      } else if (searchType == 1) {
+        alert("No results found !\nTry Deep searching...");
+      } else if (searchType == 2) {
+        alert(
+          "No results found !\n\nChances are :\n- The server is down or\n- google is a bitch ! (Blacklisted, try again after a day)\n- maybe the search is one of the rarest product ever"
+        );
+      } else if (searchType == 3) {
+        alert(
+          "No results found in db !\nTry using different/shorter keywords or do a Deep searching..."
+        );
+      }
     });
 }
 
 onMounted(() => {
-  console.log("mounted");
   getJson();
 });
 </script>
 
 <template>
   <div class="prod-con" id="prodcon">
-    <HeaderBar :products="products" />
+    <HeaderBar
+      :products="products"
+      :detail="1"
+      :searchQuery="searchQuery"
+      :searchType="searchType"
+    />
     <div class="product_list">
       <div class="products" v-if="products.length > 2">
         <productcont
           v-for="product in products"
           :key="product.id"
           :product="product"
+          :searchQuery="searchQuery"
+          :searchType="searchType"
         />
       </div>
     </div>
