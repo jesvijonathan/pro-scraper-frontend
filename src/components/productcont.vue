@@ -92,8 +92,6 @@ const { product } = defineProps({
     required: true,
   },
 });
-
-console.log(product);
 </script>
 
 <style scoped></style>

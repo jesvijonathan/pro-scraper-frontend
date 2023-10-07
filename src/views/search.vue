@@ -6,16 +6,33 @@ import HeaderBar from "../components/headingbar.vue";
 
 const products = ref([]);
 
-async function getJson() {
-  const response = await axios.get("/src/assets/search.json");
+// async function getJson() {
+//   const response = await axios.get("/src/assets/search.json");
 
-  products.value = response.data;
-}
+//   products.value = response.data;
+// }
 
-getJson();
+// getJson();
 
-// add a scroll event listener
-onload = function () {
+// push to search with params & ?q=
+// this.$router.push({
+//   name: "search",
+//   params: { searchQuery: searchQuery, searchType: searchType },
+// });
+
+// get the search query from the url
+import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
+import router from "../router/index";
+
+// get url query
+
+const route = useRoute();
+
+const searchQuery = route.query.searchQuery;
+const searchType = route.query.searchType;
+
+onload = () => {
   let prod = document.getElementById("prodcon");
   prod.onscroll = function () {
     scrollFunction();
@@ -71,6 +88,45 @@ onload = function () {
     }
   }
 };
+
+// on mount call getJson();
+
+import { onMounted } from "vue";
+
+async function getJson() {
+  let urls = [
+    "https://proscraper.pythonanywhere.com/api/search",
+    "https://proscraper.pythonanywhere.com/api/quick_search",
+    "https://proscraper.pythonanywhere.com/api/deep_search",
+    "https://proscraper.pythonanywhere.com/api/db_search",
+  ];
+  let local_urls = [
+    "http://localhost:3050/api/search",
+    "http://localhost:3050/api/quick_search",
+    "http://localhost:3050/api/deep_search",
+    "http://localhost:3050/api/db_search",
+  ];
+
+  let url = urls[searchType];
+
+  // get the search query from the url
+
+  axios
+    .get(`${url}?searchQuery=${searchQuery}`)
+    .then((response) => {
+      console.log(response.data);
+      // upadte products
+      products.value = response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+onMounted(() => {
+  console.log("mounted");
+  getJson();
+});
 </script>
 
 <template>

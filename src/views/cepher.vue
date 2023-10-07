@@ -18,10 +18,10 @@
     <div class="searchtype">
       <label class="stypelabel" for="api_type_select">Search Type</label>
       <select class="api_type_select" id="api_type_select">
-        <option value="1">Regular</option>
-        <option value="2">Quick</option>
-        <option value="3">Deep</option>
-        <option value="4">DB Cache</option>
+        <option value="0">Regular</option>
+        <option value="1">Quick</option>
+        <option value="2">Deep</option>
+        <option value="3" selected>DB Cache</option>
       </select>
     </div>
   </div>
@@ -29,6 +29,9 @@
 
 <script>
 import headingbar from "../components/headingbar.vue";
+
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -42,30 +45,38 @@ export default {
       let searchQuery = document.getElementById("search_inpt").value;
 
       console.log(searchType, searchQuery);
-
-      let urls = [
-        "http://localhost:3000/api/search",
-        "http://localhost:3000/api/quick_search",
-        "http://localhost:3000/api/deep_search",
-        "http://localhost:3000/api/db_search",
-      ];
-
-      let url = urls[searchType - 1];
-
-      console.log(url);
-
+      // move to search page, but pass the search query via url
       this.$router.push({
         name: "search",
-        params: { searchQuery: searchQuery, searchType: searchType },
+        query: { searchQuery: searchQuery, searchType: searchType },
       });
-
-      return false;
     },
   },
 };
 </script>
 
 <style scoped></style>
+<!-- let urls = [
+"http://localhost:3050/api/search",
+"http://localhost:3050/api/quick_search",
+"http://localhost:3050/api/deep_search",
+"http://localhost:3050/api/db_search",
+];
+
+let url = urls[searchType];
+
+// get the search query from the url
+
+axios
+.get(`${url}?searchQuery=${searchQuery}`)
+.then((response) => {
+  console.log(response.data);
+  this.msg = response.data.msg;
+  this.msg_link = response.data.msg_link;
+})
+.catch((error) => {
+  console.log(error);
+}); -->
 
 <!-- <script>
 import axios from "axios";
