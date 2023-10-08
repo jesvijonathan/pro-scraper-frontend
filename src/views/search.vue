@@ -32,7 +32,59 @@ const route = useRoute();
 const searchQuery = route.query.searchQuery;
 const searchType = route.query.searchType;
 
-onload = () => {
+// on mount call getJson();
+
+import { onMounted } from "vue";
+
+async function getJson() {
+  let urls = [
+    "https://proscraper.pythonanywhere.com/api/search",
+    "https://proscraper.pythonanywhere.com/api/quick_search",
+    "https://proscraper.pythonanywhere.com/api/deep_search",
+    "https://proscraper.pythonanywhere.com/api/db_search",
+  ];
+  let local_urls = [
+    "http://localhost:3050/api/search",
+    "http://localhost:3050/api/quick_search",
+    "http://localhost:3050/api/deep_search",
+    "http://localhost:3050/api/db_search",
+  ];
+
+  let url = urls[searchType];
+
+  // get the search query from the url
+
+  axios
+    .get(`${url}?searchQuery=${searchQuery}`)
+    .then((response) => {
+      console.log(response.data);
+      // upadte products
+      products.value = response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+
+      if (searchType == 0) {
+        alert(
+          "No results found !\nEven after switching to Deep Search internally. \n\nChances are :\n- The server is down or\n- google is a bitch ! (Blacklisted, try again after a day)\n- maybe the search is one of the rarest product ever"
+        );
+      } else if (searchType == 1) {
+        alert("No results found !\nTry Deep searching...");
+      } else if (searchType == 2) {
+        alert(
+          "No results found !\n\nChances are :\n- The server is down or\n- google is a bitch ! (Blacklisted, try again after a day)\n- maybe the search is one of the rarest product ever"
+        );
+      } else if (searchType == 3) {
+        alert(
+          "No results found in db !\nTry using different/shorter keywords or do a Deep searching..."
+        );
+      }
+    });
+}
+
+onMounted(() => {
+  getJson();
+
   let prod = document.getElementById("prodcon");
   prod.onscroll = function () {
     scrollFunction();
@@ -87,60 +139,6 @@ onload = () => {
       // prod.style.marginTop = "5.5vw";
     }
   }
-};
-
-// on mount call getJson();
-
-import { onMounted } from "vue";
-
-async function getJson() {
-  let urls = [
-    "https://proscraper.pythonanywhere.com/api/search",
-    "https://proscraper.pythonanywhere.com/api/quick_search",
-    "https://proscraper.pythonanywhere.com/api/deep_search",
-    "https://proscraper.pythonanywhere.com/api/db_search",
-  ];
-  let local_urls = [
-    "http://localhost:3050/api/search",
-    "http://localhost:3050/api/quick_search",
-    "http://localhost:3050/api/deep_search",
-    "http://localhost:3050/api/db_search",
-  ];
-
-  let url = urls[searchType];
-
-  // get the search query from the url
-
-  axios
-    .get(`${url}?searchQuery=${searchQuery}`)
-    .then((response) => {
-      console.log(response.data);
-      // upadte products
-      products.value = response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-
-      if (searchType == 0) {
-        alert(
-          "No results found !\nEven after switching to Deep Search internally. \n\nChances are :\n- The server is down or\n- google is a bitch ! (Blacklisted, try again after a day)\n- maybe the search is one of the rarest product ever"
-        );
-      } else if (searchType == 1) {
-        alert("No results found !\nTry Deep searching...");
-      } else if (searchType == 2) {
-        alert(
-          "No results found !\n\nChances are :\n- The server is down or\n- google is a bitch ! (Blacklisted, try again after a day)\n- maybe the search is one of the rarest product ever"
-        );
-      } else if (searchType == 3) {
-        alert(
-          "No results found in db !\nTry using different/shorter keywords or do a Deep searching..."
-        );
-      }
-    });
-}
-
-onMounted(() => {
-  getJson();
 });
 </script>
 
