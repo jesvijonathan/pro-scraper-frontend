@@ -19,8 +19,8 @@
     <div class="searchtype">
       <label class="stypelabel" for="api_type_select">Search Type</label>
       <select class="api_type_select" id="api_type_select">
-        <option value="0">Regular</option>
-        <option value="1" selected>Quick</option>
+        <option value="0" selected>Regular</option>
+        <option value="1">Quick</option>
         <option value="2">Deep</option>
         <option value="3">DB Cache</option>
       </select>
