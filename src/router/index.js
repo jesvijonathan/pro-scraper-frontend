@@ -24,6 +24,7 @@ const router = createRouter({
       path: "/product",
       name: "product",
       component: product,
+      props: (route) => ({ query: route.query.q }),
     },
     {
       path: "/404",
