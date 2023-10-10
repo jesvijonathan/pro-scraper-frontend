@@ -37,6 +37,7 @@ const router = createRouter({
     // },
   ],
 });
+export default router;
 
 // router.beforeEach((to, from, next) => {
 //   if (to.matched.length === 0) {
@@ -54,5 +55,3 @@ const router = createRouter({
 //     router.push("/404");
 //   }
 // });
-
-export default router;

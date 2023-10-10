@@ -1,0 +1,21 @@
+{
+  "framework": "vue",
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/cepher.vue"
+    },
+    {
+      "source": "/search/",
+      "destination": "/search.vue"
+    },
+    {
+      "source": "/product/",
+      "destination": "/product.vue"
+    },
+    {
+      "source": "/404",
+      "destination": "/404.vue"
+    }
+  ]
+}
