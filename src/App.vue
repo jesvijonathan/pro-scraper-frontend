@@ -16,7 +16,7 @@ import sjson from "./assets/search.json";
   <div class="app">
     <Header />
 
-    <router-view />
+    <router-view :key="$route.path" />
 
     <Footer />
   </div>

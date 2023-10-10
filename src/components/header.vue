@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="navbar">
-      <a href="#" class="nav-logo" style="padding-left: 3vw">Pro Scraper</a>
+      <a href="/" class="nav-logo" style="padding-left: 3vw">Pro Scraper</a>
       <div class="head-con hc">
         <ul>
           <li>
@@ -88,12 +88,6 @@
         <a href="" class="fa fa-shopping-cart icbut"></a>
         <a href="" class="fa fa-user-circle-o icbut"></a>
       </div>
-
-      <!-- <div class="hamburger">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </div> -->
     </div>
   </div>
 </template>

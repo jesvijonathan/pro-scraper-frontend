@@ -4,6 +4,8 @@ import search from "../views/search.vue";
 
 import cepher from "../views/cepher.vue";
 
+import product from "../views/product.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -19,14 +21,19 @@ const router = createRouter({
       props: (route) => ({ query: route.query.q }),
     },
     {
+      path: "/product",
+      name: "product",
+      component: product,
+    },
+    {
       path: "/404",
       name: "404",
       return: "failed",
     },
-    {
-      path: "/:pathMatch(.*)*",
-      redirect: "/404",
-    },
+    // {
+    //   path: "/:pathMatch(.*)*",
+    //   redirect: "/404",
+    // },
   ],
 });
 

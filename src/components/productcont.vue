@@ -1,7 +1,6 @@
 <template>
-  <!-- @click="window.open(product.link, '_blank')" -->
   <a
-    :href="product.link"
+    :href="`/product?hash=${product.hash}`"
     target="_blank"
     class="product_container"
     :title="
@@ -86,11 +85,21 @@
 </template>
 
 <script setup>
+import router from "../router";
+
 const { product } = defineProps({
   product: {
     type: Object,
     required: true,
   },
+});
+
+import { onMounted } from "vue";
+
+onMounted(() => {
+  if (product.title == "" || !product.title) {
+    product.title = product.hash;
+  }
 });
 </script>
 

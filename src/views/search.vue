@@ -6,33 +6,14 @@ import HeaderBar from "../components/headingbar.vue";
 
 const products = ref([]);
 
-// async function getJson() {
-//   const response = await axios.get("/src/assets/search.json");
-
-//   products.value = response.data;
-// }
-
-// getJson();
-
-// push to search with params & ?q=
-// this.$router.push({
-//   name: "search",
-//   params: { searchQuery: searchQuery, searchType: searchType },
-// });
-
-// get the search query from the url
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 import router from "../router/index";
-
-// get url query
 
 const route = useRoute();
 
 const searchQuery = route.query.searchQuery;
 const searchType = route.query.searchType;
-
-// on mount call getJson();
 
 import { onMounted } from "vue";
 
@@ -50,15 +31,12 @@ async function getJson() {
     "http://localhost:3050/api/db_search",
   ];
 
-  let url = urls[searchType];
-
-  // get the search query from the url
+  let url = local_urls[searchType];
 
   axios
     .get(`${url}?searchQuery=${searchQuery}`)
     .then((response) => {
       console.log(response.data);
-      // upadte products
       products.value = response.data;
     })
     .catch((error) => {
@@ -140,6 +118,18 @@ onMounted(() => {
     }
   }
 });
+
+import { onUnmounted } from "vue";
+
+onUnmounted(() => {
+  // header_container.style.top = "0 !important";
+  // filt_1.style.fontSize = "1.4vw !important";
+  // filt_top.style.top = "0vw !important";
+});
+
+let current_product;
+
+let page = 0;
 </script>
 
 <template>

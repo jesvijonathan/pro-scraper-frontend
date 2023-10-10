@@ -85,7 +85,7 @@ const searchTypeLabel = () => {
   } else if (props.searchType == 3) {
     return "DB Cache Search";
   } else {
-    return "Unknown"; // Handle other cases if needed
+    return "Unknown";
   }
 };
 </script>

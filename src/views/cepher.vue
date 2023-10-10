@@ -1,6 +1,41 @@
-<template>
-  <headingbar :products="products" :detail="1"></headingbar>
+<script>
+import headingbar from "../components/headingbar.vue";
+import axios from "axios";
+import router from "../router";
 
+export default {
+  data() {
+    return {
+      searchType: "0",
+    };
+  },
+  methods: {
+    searchFunc() {
+      let searchType = this.searchType;
+      let searchQuery = document.getElementById("search_inpt").value;
+
+      this.$router.push({
+        name: "search",
+        query: { searchQuery: searchQuery, searchType: searchType },
+      });
+    },
+    searchTypeFunc() {
+      localStorage.setItem("searchType", this.searchType);
+    },
+  },
+  mounted() {
+    let storedSearchType = localStorage.getItem("searchType");
+    if (storedSearchType) {
+      this.searchType = storedSearchType;
+    }
+  },
+  components: {
+    headingbar,
+  },
+};
+</script>
+
+<template>
   <div class="search_cont">
     <div class="main-title search_title">Search Products</div>
     <form class="search_bar" onsubmit="return false;">
@@ -11,15 +46,25 @@
         id="search_inpt"
         autofocus="true"
       />
-      <button @click="searchFunc" class="fa fa-search search_ico"></button>
+      <button @click="searchFunc()" class="fa fa-search search_ico"></button>
     </form>
   </div>
 
   <div class="api_type">
     <div class="searchtype">
       <label class="stypelabel" for="api_type_select">Search Type</label>
-      <select class="api_type_select" id="api_type_select">
-        <option value="0" selected>Regular</option>
+      <select
+        class="api_type_select"
+        id="api_type_select"
+        v-model="searchType"
+        @change="searchTypeFunc"
+      >
+        <option
+          value="0"
+          title="Does a deep search if not found in quick search"
+        >
+          Regular
+        </option>
         <option value="1">Quick</option>
         <option value="2">Deep</option>
         <option value="3">DB Cache</option>
@@ -27,34 +72,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import headingbar from "../components/headingbar.vue";
-
-import axios from "axios";
-
-export default {
-  data() {
-    return {
-      msg_link: "",
-      msg: "",
-    };
-  },
-  methods: {
-    searchFunc() {
-      let searchType = document.getElementById("api_type_select").value;
-      let searchQuery = document.getElementById("search_inpt").value;
-
-      // console.log(searchType, searchQuery);
-      // move to search page, but pass the search query via url
-      this.$router.push({
-        name: "search",
-        query: { searchQuery: searchQuery, searchType: searchType },
-      });
-    },
-  },
-};
-</script>
 
 <style scoped></style>
 <!-- let urls = [
