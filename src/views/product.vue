@@ -312,11 +312,13 @@ onUnmounted(() => {});
       </div>
     </div>
 
-    {{ responses.product }}
-    <br /><br /><br /><br />
-    {{ responses.market }}
-    <br /><br /><br /><br />
-    {{ responses.review }}
+    <div style="color: white; margin-top: 50vw">
+      {{ responses.product }}
+      <br /><br /><br /><br />
+      {{ responses.market }}
+      <br /><br /><br /><br />
+      {{ responses.review }}
+    </div>
   </div>
 </template>
 
