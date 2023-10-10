@@ -13,7 +13,7 @@
     <div class="filcon">
       <div style="height: 2.2vw" id="padspac"></div>
       <div class="filt but_mami" style="gap: 1vw" @click="backFunc">
-        <i class="fa fa-arrow-left"></i>
+        <i class="fa fa-arrow-left" style="font-size: 1.3vw"></i>
         <div class="filb">Back</div>
       </div>
     </div>

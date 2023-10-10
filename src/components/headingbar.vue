@@ -6,7 +6,7 @@
   <div class="filt_area" id="filt_top">
     <div class="categ">
       <div class="filt_2" id="filt_2">
-        <a href="" class="stpath">{{ searchTypeLabel() }}</a>
+        <a href="/" class="stpath">{{ searchTypeLabel() }}</a>
         /
         <a href="" class="stpath">"{{ searchQuery }}"</a>
       </div>

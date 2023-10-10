@@ -52,8 +52,12 @@
               </button>
 
               <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
+                <a href="http://localhost:3050/restart" target="_blank"
+                  >Restart Chromedriver</a
+                >
+                <a href="http://localhost:3050/restart_db" target="_blank"
+                  >Restart DB</a
+                >
                 <a href="#">Link 3</a>
               </div>
             </div>

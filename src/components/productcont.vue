@@ -1,7 +1,6 @@
 <template>
   <a
     :href="`/product?hash=${product.hash}`"
-    target="_blank"
     class="product_container"
     :title="
       'Rating : ' +

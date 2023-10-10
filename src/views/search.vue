@@ -17,6 +17,8 @@ const searchType = route.query.searchType;
 
 import { onMounted } from "vue";
 
+let loaded = ref(0);
+
 async function getJson() {
   let urls = [
     "https://proscraper.pythonanywhere.com/api/search",
@@ -25,23 +27,25 @@ async function getJson() {
     "https://proscraper.pythonanywhere.com/api/db_search",
   ];
   let local_urls = [
-    "http://localhost:3050/api/search",
-    "http://localhost:3050/api/quick_search",
-    "http://localhost:3050/api/deep_search",
-    "http://localhost:3050/api/db_search",
+    "http://localhost:5000/api/search",
+    "http://localhost:5000/api/quick_search",
+    "http://localhost:5000/api/deep_search",
+    "http://localhost:5000/api/db_search",
   ];
 
-  let url = local_urls[searchType];
+  let url = urls[searchType];
 
   axios
     .get(`${url}?searchQuery=${searchQuery}`)
     .then((response) => {
       console.log(response.data);
       products.value = response.data;
+      loaded.value = 1;
     })
     .catch((error) => {
       console.log(error);
 
+      loaded.value = -1;
       if (searchType == 0) {
         alert(
           "No results found !\nEven after switching to Deep Search internally. \n\nChances are :\n- The server is down or\n- google is a bitch ! (Blacklisted, try again after a day)\n- maybe the search is one of the rarest product ever"
@@ -141,6 +145,16 @@ let page = 0;
       :searchType="searchType"
     />
     <div class="product_list">
+      <div v-if="loaded == 0" class="loading_timer">
+        <div class="laoading_text">Loading...</div>
+
+        <div class="progress_bar_cont">
+          <div class="progress_bar"></div>
+        </div>
+      </div>
+      <div class="laoading_text paused" v-else-if="loaded == -1">
+        Error Loading !
+      </div>
       <div class="products" v-if="products.length > 2">
         <productcont
           v-for="product in products"

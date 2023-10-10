@@ -1672,6 +1672,7 @@ body {
 }
 
 .stpath {
+  font-size: 1vw;
 }
 .stpath:hover {
   text-decoration: underline;
@@ -1734,6 +1735,7 @@ body {
 }
 .filb {
   margin-left: 0.5vw;
+  font-size: 1vw;
 }
 .sideconmain1 {
   border: 0px solid brown;
@@ -2175,7 +2177,7 @@ body {
   /* top: -2.8vw; */
   /* left: 1.5vw; */
   left: 2.1vw;
-  top: -2.4;
+  top: -2.4vw;
 }
 .sear {
   background: #e7e7e7;
@@ -2192,6 +2194,7 @@ body {
   left: -2vw;
   position: relative;
   cursor: pointer;
+  font-size: 1.2vw;
 }
 .search_ico:hover {
   font-weight: 900;
@@ -2579,12 +2582,114 @@ body {
   background-color: black;
   color: white;
   border-radius: 7px;
-  padding: 0.4vw 0vw;
   border: 0;
+  font-size: 1vw;
 }
 .use_butt:hover {
   background-color: #454545;
 }
+.use_butta {
+  font-size: 1vw;
+  min-width: 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .ub {
   min-width: 10vw;
+}
+
+/* select options hover effect */
+select option:hover {
+  background-color: #dcdcdc;
+}
+
+#api_type_select:hover {
+  background-color: #dcdcdc;
+}
+#api_type_select:focus {
+  background-color: #ffffff;
+}
+
+.loading_timer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: #00000099;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 7;
+  animation: timeo 30s forwards 1;
+}
+
+.progress_bar_cont {
+  width: 50vw;
+  height: 0.8vw;
+  background: #00000052;
+  display: flex;
+  z-index: 7;
+  border-radius: 10px;
+}
+
+@keyframes timeo {
+  0% {
+    display: flex;
+  }
+  99% {
+    display: flex;
+  }
+  100% {
+    display: none;
+  }
+}
+
+.progress_bar {
+  width: 0%;
+  height: 100%;
+
+  border-radius: 10px;
+  background: #ffffff;
+  transition: 0.2s ease-in-out;
+  animation: progress 30s forwards 1;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.laoading_text {
+  font-size: 1.5vw;
+  font-weight: 600;
+  color: white;
+  margin-top: 7vw;
+  margin-bottom: 3vw;
+  font-family: "cocoon";
+  animation: text 1s ease-in-out infinite;
+}
+
+@keyframes text {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.paused {
+  animation: none !important;
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
