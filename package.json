@@ -1,7 +1,7 @@
 {
   "name": "pro-scraper-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "axios": "^1.5.1",
+    "chart.js": "^4.4.0",
+    "chartjs": "^0.3.24",
+    "chartjs-chart-box-and-violin-plot": "^4.0.0",
     "font-awesome": "^4.7.0",
+    "plotly.js": "^2.26.2",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },

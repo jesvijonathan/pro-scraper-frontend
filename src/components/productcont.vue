@@ -28,7 +28,9 @@
         </div>
         <div class="prod_cat">
           {{ product.market }}
-          <div class="prod_cat reviews">({{ product.rating.reviews }})</div>
+          <div class="prod_cat reviews" v-if="product.rating.reviews">
+            ({{ product.rating.reviews }})
+          </div>
         </div>
 
         <div></div>
