@@ -1798,6 +1798,8 @@ body {
   /* margin-top: 5.5vw !important; */
   color: #000;
   transition: 0.2s ease-in-out;
+
+  overflow-x: hidden;
 }
 .tickcon {
   border: 0px solid brown;

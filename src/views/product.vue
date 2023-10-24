@@ -552,8 +552,7 @@ onMounted(() => {
 
 async function refreshDet() {
   let url_refresh = "https://proscraper.pythonanywhere.com/api/refresh_product";
-  // https://proscraper.pythonanywhere.com/
-  // http://localhost:5000
+  //let url_refresh = "http://localhost:5000/api/refresh_product";
 
   loaded.value = 0;
   await axios
