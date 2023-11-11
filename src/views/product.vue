@@ -70,7 +70,7 @@ const route = useRoute();
 import { onMounted } from "vue";
 let str_price = ref("");
 let str_other_price = ref("");
-let currency = "INR"; // USD
+let currency = "USD"; // USD
 let str_date = ref("");
 
 let glink = ref("");
@@ -101,7 +101,7 @@ let cur = {
 };
 let offer;
 
-function formatPrice(price, currency = "INR") {
+function formatPrice(price, currency = "USD") {
   let strPrice = price.toString();
 
   if (currency == "INR") {
@@ -552,7 +552,7 @@ onMounted(() => {
 
 async function refreshDet() {
   let url_refresh = "https://proscraper.pythonanywhere.com/api/refresh_product";
-  //let url_refresh = "http://localhost:5000/api/refresh_product";
+  // let url_refresh = "http://localhost:5000/api/refresh_product";
 
   loaded.value = 0;
   await axios
@@ -709,7 +709,8 @@ onUnmounted(() => {});
                 <div class="rating_star_no">5</div>
                 <div class="rating_star_bar">
                   <div
-                    class="rating_star_bar_perc"
+                    class="rating_star_bar_perc jos"
+                    data-jos_animation="rat_zero"
                     :style="`width: ${
                       (responses.review.stars[5] / responses.review.reviews) *
                       100
@@ -734,7 +735,8 @@ onUnmounted(() => {});
                 <div class="rating_star_no">4</div>
                 <div class="rating_star_bar">
                   <div
-                    class="rating_star_bar_perc"
+                    class="rating_star_bar_perc jos"
+                    data-jos_animation="rat_zero"
                     :style="`width: ${
                       (responses.review.stars[4] / responses.review.reviews) *
                       100
@@ -759,7 +761,8 @@ onUnmounted(() => {});
                 <div class="rating_star_no">3</div>
                 <div class="rating_star_bar">
                   <div
-                    class="rating_star_bar_perc"
+                    class="rating_star_bar_perc jos"
+                    data-jos_animation="rat_zero"
                     :style="`width: ${
                       (responses.review.stars[3] / responses.review.reviews) *
                       100
@@ -784,7 +787,8 @@ onUnmounted(() => {});
                 <div class="rating_star_no">2</div>
                 <div class="rating_star_bar">
                   <div
-                    class="rating_star_bar_perc"
+                    class="rating_star_bar_perc jos"
+                    data-jos_animation="rat_zero"
                     :style="`width: ${
                       (responses.review.stars[2] / responses.review.reviews) *
                       100
@@ -810,7 +814,8 @@ onUnmounted(() => {});
                 <div class="rating_star_no">1</div>
                 <div class="rating_star_bar">
                   <div
-                    class="rating_star_bar_perc"
+                    class="rating_star_bar_perc jos"
+                    data-jos_animation="rat_zero"
                     :style="`width: ${
                       (responses.review.stars[1] / responses.review.reviews) *
                       100
@@ -825,7 +830,7 @@ onUnmounted(() => {});
               <div class="rating_tab" style="margin-top: 1vw">Reviews</div>
               <div class="seperator sep2"></div>
             </div>
-            <div class="tags_cont">
+            <div class="tags_cont jos" data-jos_stagger="flip">
               <!-- <div class="rtag">Good Performance (128)</div> -->
               <!-- {{ processedTags }} -->
               <div
@@ -865,7 +870,12 @@ onUnmounted(() => {});
               </div>
             </div>
           </div> -->
-        <div class="act_market_cont">
+        <div
+          class="act_market_cont jos"
+          data-jos_stagger="zoom"
+          data-jos_stagger_duration="0.4"
+          data-jos_stagger_seq="0.1"
+        >
           <!-- display only if store is avilable -->
           <a
             target="_blank"
@@ -890,11 +900,13 @@ onUnmounted(() => {});
             <div class="market_title">{{ market.store }}</div>
             <div class="mark_price_cont">
               <div class="market_price">
-                {{ cur.INR.symbol }} {{ market.price }}
+                {{ cur[currency].symbol }} {{ market.price }}
               </div>
               <div class="mrp_odd">
                 <div class="market_price_mrp">
-                  <div v-if="market.other_price">{{ cur.INR.symbol }}</div>
+                  <div v-if="market.other_price">
+                    {{ cur[currency].symbol }}
+                  </div>
                   {{ market.other_price }}
                 </div>
                 <!-- calculate offer % -->

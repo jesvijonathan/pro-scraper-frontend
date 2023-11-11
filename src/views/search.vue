@@ -155,7 +155,14 @@ let page = 0;
       <div class="laoading_text paused" v-else-if="loaded == -1">
         Error Loading !
       </div>
-      <div class="products" v-if="products.length > 2">
+      <div
+        class="products jos"
+        data-jos_stagger="zoom"
+        data-jos_stagger_duration="0.5"
+        data-jos_stagger_seq="0.1"
+        data-jos_stagger_scrolldirection="down"
+        v-if="products.length > 2"
+      >
         <productcont
           v-for="product in products"
           :key="product.id"

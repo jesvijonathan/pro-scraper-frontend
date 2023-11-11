@@ -37,7 +37,7 @@
       </div>
       <div class="prod_price">
         <div class="price">
-          <div class="prod_mrp">₹{{ product.price }}</div>
+          <div class="prod_mrp">${{ product.price }}</div>
         </div>
         <div class="prod_buy">
           <div class="fa fa-heart press pink"></div>

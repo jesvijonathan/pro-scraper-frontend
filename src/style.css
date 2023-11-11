@@ -2831,6 +2831,10 @@ select option:hover {
   background-color: #000;
   width: 0%;
 }
+.jos-rat_zero {
+  width: 0% !important;
+  transition: 0.5s !important;
+}
 .main_rat {
   font-size: 1.8vw;
 }
